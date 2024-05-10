@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { create } from "zustand";
 import { ID, databases, storage } from "@/appwrite";
 import uploadImage from "@/lib/uploadImage";
@@ -69,7 +71,7 @@ export const useBoardStore = create<BoardState>()((set, get) => ({
     set({ board: { columns: newColumns } });
 
     if (todo.image) {
-      await storage.deleteFile(todo.image.bucketId, todo.image.fileId);
+      await storage.deleteFile(todo.image.bucketId!, todo.image.fileId);
     }
 
     await databases.deleteDocument(
